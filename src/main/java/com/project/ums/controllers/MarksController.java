@@ -4,6 +4,7 @@ import com.project.ums.authentication.MyUserDetails;
 import com.project.ums.controllers.dto.UserDTO;
 import com.project.ums.models.Marks;
 import com.project.ums.models.Subject;
+import com.project.ums.models.User;
 import com.project.ums.services.MarksService;
 import com.project.ums.services.SemesterService;
 import com.project.ums.services.SubjectService;
@@ -15,11 +16,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.yaml.snakeyaml.error.Mark;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
@@ -75,6 +79,26 @@ public class MarksController {
 
         model.addAttribute("users", students);
         return "lecturer/students";
+    }
+
+    @GetMapping("/report/{id}")
+    public String studentReport(@PathVariable("id") Long id, Model model) {
+        var allMarks = marksService.findMarksByUser(id);
+        Map<Integer, List<Marks>> groupByMarkMap =
+                allMarks.stream().collect(Collectors.groupingBy(Marks::getSemesterId));
+
+        model.addAttribute("report", groupByMarkMap);
+        return "student/report";
+    }
+
+    @GetMapping("/report")
+    public String studentReport(@AuthenticationPrincipal MyUserDetails userDetails,  Model model) {
+        var allMarks = marksService.findMarksByUser(userDetails.getId());
+        Map<Integer, List<Marks>> groupByMarkMap =
+                allMarks.stream().collect(Collectors.groupingBy(Marks::getSemesterId));
+
+        model.addAttribute("report", groupByMarkMap);
+        return "student/report";
     }
 
 }

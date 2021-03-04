@@ -75,7 +75,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="./index.html" class="nav-link">
+                                <a th:href="@{/user/all}"  class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>PROFILES</p>
                                 </a>
@@ -200,88 +200,56 @@
         <section class="content">
             <div class="container-fluid">
 
-
                 <div class="row">
-                    <!-- left column -->
-                    <div class="col-md-12">
-                        <!-- general form elements -->
-                        <div class="card card-primary">
+                    <div class="col-12">
+                        <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Quick Example</h3>
+                                <h3 class="card-title">Profiles</h3>
                             </div>
-                            <!-- /.card-header -->
-                            <!-- form start -->
-                            <form action="#" th:action="@{/marks/create}" th:object="${marks}" method="post">
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <label for="semester" class="col-form-label">Semester </label>
-                                        <select class="custom-select form-control-border" id="semester" th:field="*{semesterId}">
-                                            <option th:each="semester : ${semesters}" th:value="${semester.id}" th:text="${semester.name}"></option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="user" class="col-form-label">Student </label>
-                                        <select class="custom-select form-control-border" id="user" th:field="*{userId}">
-                                            <option th:each="student : ${students}" th:value="${student.id}" th:text="${student.name}"></option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="subjects" class="col-form-label">Subject </label>
-                                        <select class="custom-select form-control-border" id="subjects" th:field="*{subjectID}">
-                                            <option th:each="subject : ${subjects}" th:value="${subject.id}" th:text="${subject.subjectName}"></option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="ese" class="col-form-label">End Semester Exam Mark</label>
-                                        <input type="number" th:field="*{ese}" class="form-control" id="ese" placeholder="enter mark">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="tu" class="col-form-label">Tutorial Marks</label>
-                                        <input type="number" th:field="*{tutorials}" class="form-control" id="tu" placeholder="enter mark">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="qu" class="col-form-label">Quizzes Mark</label>
-                                        <input type="number" th:field="*{quizzes}" class="form-control" id="qu" placeholder="enter mark">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="as" class="col-form-label">Assignment Mark</label>
-                                        <input type="number" th:field="*{assignments}" class="form-control" id="as" placeholder="enter mark">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="pr" class="col-form-label">Practical Mark</label>
-                                        <input type="number" th:field="*{practicals}" class="form-control" id="pr" placeholder="enter mark">
-                                    </div>
+                            <!-- ./card-header -->
+                            <div class="card-body">
 
-                                </div>
-                                <!-- /.card-body -->
+                                    <table>
+                                        <tr th:each="element : ${report}">
+                                            <td th:text="${element.key}">keyvalue</td>
+                                            <table>
+                                                <tr th:each="anews : ${element.value}">
+                                                    <td th:text="${anews.subjectID}">Some name</td>
+                                                    <td th:text="${anews.ese}">Some name</td>
+                                                    <td th:text="${anews.tutorials}">Some name</td>
+                                                    <td th:text="${anews.assignments}">Some name</td>
+                                                    <td th:text="${anews.quizzes}">Some name</td>
+                                                </tr>
+                                            </table>
+                                        </tr>
+                                    </table>
 
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </div>
-                            </form>
+
+                            </div>
+                            <!-- /.card-body -->
                         </div>
-                        <!-- /.card -->
                     </div>
+                    <!-- /.card -->
                 </div>
+            </div>
 
+    </div><!--/. container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
 
-            </div><!--/. container-fluid -->
-        </section>
-        <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+</aside>
+<!-- /.control-sidebar -->
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
-
-    <!-- Main Footer -->
-    <footer class="main-footer">
-        <strong>Copyright &copy; 2021 <a href="#">University Management System</a>.</strong>
-        All rights reserved.
-    </footer>
+<!-- Main Footer -->
+<footer class="main-footer">
+    <strong>Copyright &copy; 2021 <a href="#">University Management System</a>.</strong>
+    All rights reserved.
+</footer>
 </div>
 <!-- ./wrapper -->
 

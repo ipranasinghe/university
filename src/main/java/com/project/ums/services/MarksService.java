@@ -17,7 +17,7 @@ public class MarksService {
         return  marksRepository.save(marks);
     }
 
-    public List<Marks> findMarksByUser(int id){
+    public List<Marks> findMarksByUser(Long id){
         return marksRepository.findMarksByUserId(id);
     }
 }

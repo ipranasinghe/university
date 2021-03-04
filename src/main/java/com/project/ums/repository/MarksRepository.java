@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface MarksRepository extends JpaRepository<Marks,Integer> {
 
-    List<Marks> findMarksByUserId(int id);
+    List<Marks> findMarksByUserId(Long id);
 }
