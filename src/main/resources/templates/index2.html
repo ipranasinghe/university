@@ -25,6 +25,9 @@
         <a href="index3.html" class="nav-link">Home</a>
       </li>
     </ul>
+    <form th:action="@{/logout}" method="post">
+      <input type="submit" value="Logout" />
+    </form>
   </nav>
   <!-- /.navbar -->
 
@@ -87,9 +90,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
+                <a th:href="@{/mail/all}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
+                  <p>MAILS</p>
                 </a>
               </li>
             </ul>
@@ -154,56 +157,9 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                MAILs
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>FROM LECTURES</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>FROM STUDENTS</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tree"></i>
-              <p>
-                LECTURE ENROLLMENTS
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p>
-                ENTERMARKS
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-table"></i>
-              <p>
-                REPORTS
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-          </li>
+
+
+
           <li class="nav-item ">
             <a class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -231,6 +187,12 @@
                   <p>ENTER MARKS</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a th:href="@{/mail/all}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>MAILS</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item ">
@@ -249,9 +211,15 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
+                <a th:href="@{/marks/report}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Report</p>
+                  <p>REPORT</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="@{/mail/all}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>MAILS</p>
                 </a>
               </li>
             </ul>

@@ -3,6 +3,7 @@ package com.project.ums.authentication;
 import java.util.*;
 
 import com.project.ums.models.Role;
+import com.project.ums.models.Student;
 import com.project.ums.models.Subject;
 import com.project.ums.models.User;
 import org.springframework.security.core.GrantedAuthority;

@@ -1,8 +1,11 @@
 package com.project.ums.controllers.dto;
 
+import com.project.ums.models.Inquirie;
 import com.project.ums.models.Subject;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class UserDTO {
     private long id;
@@ -18,6 +21,7 @@ public class UserDTO {
     private int employeeNumber;
 
     private List<Subject> subjects;
+    private List<Inquirie> mails;
 
     public long getId() {
         return id;
@@ -105,5 +109,13 @@ public class UserDTO {
 
     public void setSubjects(List<Subject> subjects) {
         this.subjects = subjects;
+    }
+
+    public List<Inquirie> getMails() {
+        return mails;
+    }
+
+    public void setMails(List<Inquirie> mails) {
+        this.mails = mails;
     }
 }

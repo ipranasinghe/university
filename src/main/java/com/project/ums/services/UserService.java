@@ -99,6 +99,13 @@ public class UserService {
             dto.setSubjects(new ArrayList<>());
         }
 
+        if(user.getMails() != null){
+            dto.setMails(Utils.convertSetToList(user.getMails()));
+        }
+        else{
+            dto.setMails(new ArrayList<>());
+        }
+
         return dto;
     }
 
@@ -200,6 +207,12 @@ public class UserService {
 
         return students;
     }
+
+   public UserDTO getUserDTO(Long id){
+        var user = userRepository.findById(id).get();
+
+        return convert(user);
+   }
 
 
 }

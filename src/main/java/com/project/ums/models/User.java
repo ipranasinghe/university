@@ -43,6 +43,10 @@ public class User {
     )
     private Set<Subject> subjects = new HashSet<>();
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Inquirie> mails = new HashSet<>();
+
+
     public Long getId() {
         return id;
     }
@@ -122,4 +126,11 @@ public class User {
         this.department = department;
     }
 
+    public Set<Inquirie> getMails() {
+        return mails;
+    }
+
+    public void setMails(Set<Inquirie> mails) {
+        this.mails = mails;
+    }
 }
