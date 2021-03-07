@@ -7,6 +7,7 @@ import com.project.ums.models.Subject;
 import com.project.ums.models.User;
 import com.project.ums.services.UserService;
 import com.project.ums.utils.Utils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -26,6 +27,8 @@ import java.util.stream.Collectors;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    private static final Logger logger = Logger.getLogger(UserController.class);
 
     @GetMapping("/all")
     public String showAllUsers(Model model){
@@ -64,7 +67,8 @@ public class UserController {
     }
 
     @GetMapping("edit/{id}")
-    public String update(@PathVariable("id") Long id, Model model) {
+    public String update(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable("id") Long id, Model model) {
+        logger.debug("Profile related to id: "+ id+" is edited by admin :" + userDetails.getUsername());
         User user = userService.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         UserDTO userDTO  = userService.convert(user);
@@ -72,13 +76,9 @@ public class UserController {
         return "user/update";
     }
 
-    @PostMapping("update/{id}")
-    public String updateUser(@PathVariable("id") Long id, @Valid UserDTO user, BindingResult result,
-                                Model model) {
-        if (result.hasErrors()) {
-            user.setId(id);
-            return "user/update";
-        }
+    @PostMapping("/update")
+    public String updateUser( @Valid UserDTO user, BindingResult result, Model model) {
+
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         userService.save(user);
         model.addAttribute("users", userService.findAll());
