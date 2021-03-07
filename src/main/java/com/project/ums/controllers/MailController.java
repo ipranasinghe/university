@@ -6,6 +6,7 @@ import com.project.ums.models.Subject;
 import com.project.ums.services.MailService;
 import com.project.ums.services.SubjectService;
 import com.project.ums.services.UserService;
+import org.apache.coyote.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
@@ -39,11 +41,10 @@ public class MailController {
     }
 
     @PostMapping("/create")
-    public String createMail(@AuthenticationPrincipal MyUserDetails userDetails, @Valid Inquirie mail, BindingResult result, Model model) {
+    public ModelAndView createMail(@AuthenticationPrincipal MyUserDetails userDetails, @Valid Inquirie mail, BindingResult result, Model model) {
         mail.setUser(userService.findById(userDetails.getId()).get());
         mailService.addMail(mail);
-        model.addAttribute("subjects", subjectService.findAll());
-        return "subject/all";
+        return new ModelAndView("redirect:/mail/all");
     }
 
     @GetMapping("/all")
