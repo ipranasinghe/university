@@ -30,7 +30,7 @@ public class DepartmentController {
     @GetMapping("/add")
     public String addDepartment(Model model){
         Department department = new Department();
-        department.setDepartmentCode(DepartmentCode.CE);
+        department.setDepartmentCode(DepartmentCode.CS);
         model.addAttribute("department", department);
         return "department/add";
     }

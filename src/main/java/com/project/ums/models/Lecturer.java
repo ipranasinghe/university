@@ -4,17 +4,17 @@ import javax.persistence.*;
 
 @Entity
 public class Lecturer extends Profile {
-    private int employeeNo;
+    private String employeeNo;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="department_id", referencedColumnName = "id")
     private Department department;
 
-    public int getEmployeeNo() {
+    public String getEmployeeNo() {
         return employeeNo;
     }
 
-    public void setEmployeeNo(int employeeNo) {
+    public void setEmployeeNo(String employeeNo) {
         this.employeeNo = employeeNo;
     }
 

@@ -88,6 +88,7 @@ public class MarksController {
                 allMarks.stream().collect(Collectors.groupingBy(Marks::getSemesterId));
 
         model.addAttribute("report", groupByMarkMap);
+        model.addAttribute("gpa", 3.25);
         return "student/report";
     }
 

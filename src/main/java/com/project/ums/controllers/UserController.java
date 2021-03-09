@@ -78,9 +78,7 @@ public class UserController {
 
     @PostMapping("/update")
     public String updateUser( @Valid UserDTO user, BindingResult result, Model model) {
-
-        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-        userService.save(user);
+        userService.update(user);
         model.addAttribute("users", userService.findAll());
         return "user/all";
     }

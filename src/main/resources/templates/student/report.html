@@ -20,11 +20,9 @@
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
-        <ul class="navbar-nav">
-            <li class="nav-item d-none d-sm-inline-block">
-                <a href="index3.html" class="nav-link">Home</a>
-            </li>
-        </ul>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Logout" />
+        </form>
     </nav>
     <!-- /.navbar -->
 
@@ -228,21 +226,9 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0">Dashboard v2</h1>
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard v2</li>
-                        </ol>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
-        </div>
+
+
+
         <!-- /.content-header -->
 
         <!-- Main content -->
@@ -253,25 +239,86 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Profiles</h3>
+                                <h1>Student Grade Report</h1>
                             </div>
                             <!-- ./card-header -->
                             <div class="card-body">
 
-                                    <table>
-                                        <tr th:each="element : ${report}">
-                                            <td th:text="${element.key}">keyvalue</td>
-                                            <table>
-                                                <tr th:each="anews : ${element.value}">
-                                                    <td th:text="${anews.subjectID}">Some name</td>
-                                                    <td th:text="${anews.ese}">Some name</td>
-                                                    <td th:text="${anews.tutorials}">Some name</td>
-                                                    <td th:text="${anews.assignments}">Some name</td>
-                                                    <td th:text="${anews.quizzes}">Some name</td>
-                                                </tr>
-                                            </table>
-                                        </tr>
-                                    </table>
+                                <div th:each="element : ${report}">
+                                    <div class="row">
+                                        <u><h2 > Semester : <span th:text="${element.key}"> </span></h2>
+                                       </u>
+                                    </div>
+
+                                    <div th:each="marks : ${element.value}">
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <h5 class="m-0">Subject Id : </h5>
+                                            </div><!-- /.col -->
+                                            <div class="col-sm-6">
+                                                <h5 th:text="${marks.subjectID}"></h5>
+                                            </div><!-- /.col -->
+                                        </div><!-- /.row -->
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <h5 class="m-0">Tutorial marks</h5>
+                                            </div><!-- /.col -->
+                                            <div class="col-sm-6">
+                                                <h5 th:text="${marks.tutorials}"></h5>
+                                            </div><!-- /.col -->
+                                        </div><!-- /.row -->
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <h5 class="m-0">Assignment marks </h5>
+                                            </div><!-- /.col -->
+                                            <div class="col-sm-6">
+                                                <h5 th:text="${marks.assignments}"></h5>
+                                            </div><!-- /.col -->
+                                        </div><!-- /.row -->
+
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <h5 class="m-0">Quizzes marks </h5>
+                                            </div><!-- /.col -->
+                                            <div class="col-sm-6">
+                                                <h5 th:text="${marks.quizzes}"></h5>
+                                            </div><!-- /.col -->
+                                        </div><!-- /.row -->
+
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <h5 class="m-0">End Semester Exam marks </h5>
+                                            </div><!-- /.col -->
+                                            <div class="col-sm-6">
+                                                <h5 th:text="${marks.ese}"></h5>
+                                            </div><!-- /.col -->
+                                        </div><!-- /.row -->
+
+                                        <hr>
+
+
+                                    </div>
+
+                                    <hr>
+
+
+                                </div>
+
+                                <hr>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h5 class="m-0">Final GPA : </h5>
+                                    </div><!-- /.col -->
+                                    <div class="col-sm-6">
+                                        <h5 th:text="${gpa}"></h5>
+                                    </div><!-- /.col -->
+                                </div><!-- /.row -->
 
 
                             </div>

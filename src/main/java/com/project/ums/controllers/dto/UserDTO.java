@@ -18,7 +18,7 @@ public class UserDTO {
     private String role;
 
     private String indexNumber;
-    private int employeeNumber;
+    private String employeeNumber;
 
     private List<Subject> subjects;
     private List<Inquirie> mails;
@@ -87,11 +87,11 @@ public class UserDTO {
         this.indexNumber = indexNumber;
     }
 
-    public int getEmployeeNumber() {
+    public String getEmployeeNumber() {
         return employeeNumber;
     }
 
-    public void setEmployeeNumber(int employeeNumber) {
+    public void setEmployeeNumber(String employeeNumber) {
         this.employeeNumber = employeeNumber;
     }
 

@@ -72,7 +72,6 @@ public class UserService {
     public UserDTO convert(User user) {
         var dto = new UserDTO();
         dto.setId(user.getId());
-        dto.setName(user.getUserName());
         dto.setRole(user.getRoles().iterator().next().getName());
 
         if(user.getProfile() != null){
@@ -80,9 +79,15 @@ public class UserService {
             dto.setNic(user.getProfile().getNic());
             if(user.getProfile() instanceof Student){
                 dto.setType(3);
+                dto.setName(user.getProfile().getName());
+                dto.setNic(user.getProfile().getNic());
+                dto.setIndexNumber(((Student) user.getProfile()).getIndexNumber());
             }
             else if(user.getProfile() instanceof Lecturer){
                 dto.setType(2);
+                dto.setName(user.getProfile().getName());
+                dto.setNic(user.getProfile().getNic());
+                dto.setEmployeeNumber(((Lecturer) user.getProfile()).getEmployeeNo());
             }
             else{
                 dto.setType(1);
@@ -159,6 +164,20 @@ public class UserService {
         if(user.getProfile() != null){
             var profile = profileRepository.save(user.getProfile());
             user.setProfile(profile);
+        }
+
+        userRepository.save(user);
+    }
+
+
+    public void update(UserDTO userDTO) {
+
+        var user = userRepository.findById(userDTO.getId()).get();
+
+        if(user.getProfile() != null){
+            user.getProfile().setEmail(userDTO.getEmail());
+            user.getProfile().setNic(userDTO.getNic());
+            user.getProfile().setName(userDTO.getName());
         }
 
         userRepository.save(user);

@@ -64,7 +64,8 @@ public class MailController {
     }
 
     @GetMapping("/solve/{id}")
-    public void answer(@PathVariable("id") int id, Model model){
+    public ModelAndView answer(@PathVariable("id") int id, Model model){
         mailService.solveMail(id);
+        return new ModelAndView("redirect:/mail/all");
     }
 }
