@@ -299,27 +299,41 @@
                                             </div><!-- /.col -->
                                         </div><!-- /.row -->
 
-                                        <hr>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <h5 class="m-0">Total Marks : </h5>
+                                            </div><!-- /.col -->
+                                            <div class="col-sm-6">
+                                                <h5 th:text="${marks.total}"></h5>
+                                            </div><!-- /.col -->
+                                        </div><!-- /.row -->
 
 
-                                    </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <h5 class="m-0">Final Grade :  </h5>
+                                            </div><!-- /.col -->
+                                            <div class="col-sm-6">
+                                                <h5 th:text="${marks.grade}"></h5>
+                                            </div><!-- /.col -->
+                                        </div><!-- /.row -->
+
+
+                                         <hr>
+
+                                     </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <h5 class="m-0">GPA :  </h5>
+                                        </div><!-- /.col -->
+                                        <div class="col-sm-6">
+                                            <h5 th:text="${#aggregates.sum(element.value.![total])}"></h5>
+                                        </div><!-- /.col -->
+                                    </div><!-- /.row -->
 
                                     <hr>
-
-
                                 </div>
-
-                                <hr>
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <h5 class="m-0">Final GPA : </h5>
-                                    </div><!-- /.col -->
-                                    <div class="col-sm-6">
-                                        <h5 th:text="${gpa}"></h5>
-                                    </div><!-- /.col -->
-                                </div><!-- /.row -->
-
 
                             </div>
                             <!-- /.card-body -->

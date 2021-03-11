@@ -13,6 +13,8 @@ public class Marks {
     private float quizzes;
     private float assignments;
     private float practicals;
+    private float total;
+    private String grade;
 
     private int subjectID;
 
@@ -90,5 +92,39 @@ public class Marks {
 
     public void setSemesterId(int semesterId) {
         this.semesterId = semesterId;
+    }
+
+    public float getTotal() {
+        total = ese + tutorials + quizzes + practicals;
+        return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
+    }
+
+    public String getGrade() {
+        if (total < 40.0) {
+            return  "R";
+        } else if (total < 45.0) {
+            return   "C";
+        } else if (total < 50.0) {
+            return   "C+";
+        } else if (total < 55.0) {
+            return  "B-";
+        } else if (total < 60.0) {
+            return  "B";
+        } else if (total < 65.0) {
+            return  "B+";
+        } else if (total < 70.0) {
+            return  "A-";
+        } else if (total < 75.0) {
+            return  "A";
+        } else return  "A+";
+
+    }
+
+    public void setGrade(String grade){
+        this.grade = grade;
     }
 }
